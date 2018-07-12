@@ -1,0 +1,8 @@
+var utils = {
+  toFixed: function(value) {
+    return value.toFixed(2);
+  }
+};
+module.exports = {
+  toFixed:utils.toFixed
+};

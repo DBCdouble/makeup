@@ -1,0 +1,13 @@
+<wxs module="utils" src="../../../utils/utils.wxs"></wxs>
+<template name="goodItem">
+  <view class="goods-box">
+    <view class="img-box">
+      <image class="img" src="{{imgpath}}"></image>
+    </view>
+    <view class="goods-title">{{title}}</view>  
+    <view class="goods-info">
+      <view class="goods-price">￥{{utils.toFixed(price)}}</view>
+      <image class="goods-add" src="/images/post/add.png"></image>
+    </view>  
+  </view>
+</template>  

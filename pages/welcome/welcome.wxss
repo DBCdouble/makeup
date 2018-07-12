@@ -1,0 +1,45 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    /* background-color:#E41438; */
+    background: -webkit-linear-gradient(top, #FF1B66 , #FF4530); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(bottom, #FF1B66 , #FF4530); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(bottom, #FF1B66 , #FF4530); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to bottom, #FF1B66 , #FF4530); /* 标准的语法 */
+}
+
+.avatar{
+    width:200rpx;
+    height:200rpx;
+    margin-top:160rpx;
+}
+
+.motto{
+    margin-top:100rpx;
+    font-size:32rpx;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.journey-container{
+    margin-top: 200rpx;
+    border: 1px solid #ffffff;
+    width: 200rpx;
+    height: 80rpx;
+    border-radius: 5px;
+    text-align:center;
+}
+
+.journey{
+    font-size:22rpx;
+    font-weight: bold;
+    line-height:80rpx;
+    color: #ffffff;
+}
+
+page{
+    height: 100%;
+    background-color:#E41438;
+}

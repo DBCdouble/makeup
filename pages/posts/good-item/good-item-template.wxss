@@ -1,0 +1,43 @@
+.goods-box{
+  width: 372rpx;
+  height: 523rpx;
+  background-color: #FFFFFF;
+  margin-bottom: 10rpx;
+  overflow:hidden;
+}
+.img-box{
+  width: 372rpx;
+  height: 374rpx;
+  overflow: hidden;
+}
+.img{
+  width: 372rpx;
+  height: 374rpx;
+}
+.goods-title{
+  width: 310rpx;
+  height: 57rpx;
+  line-height: 57rpx;
+  font-size:26rpx;
+  margin: 0 0 16rpx 24rpx;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+.goods-info{
+  width: 336rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin:0 0 16rpx 18rpx;
+  font-size:30rpx;
+  color:#E31436;
+}
+.goods-price{
+  float: left;
+
+}
+.goods-add{
+  float:right;
+  width: 48rpx;
+  height: 48rpx;
+}

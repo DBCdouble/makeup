@@ -1,0 +1,53 @@
+<import src="post-item/post-item-template.wxml" />
+<import src="good-item/good-item-template.wxml" />
+<wxs module="utils" src="../../utils/utils.wxs"></wxs>
+<!--<import src="/pages/posts/post-item/post-item-template.wxml" />-->
+<view class="post">
+    <swiper catchtap="onSwiperTap" vertical="{{false}}" indicator-dots="true" autoplay="true" interval="5000">
+      <block wx:for="{{bannerList}}" wx:for-item="item" wx:key="index">
+        <swiper-item>
+            <image id="{{index}}" src="{{item.bannerImage}}" data-postId="{{item.id}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <block wx:for="{{templateList}}" wx:for-item="template" wx:key="index">
+      <!-- icon模版 -->
+      <view id="{{index}}" class="iconTemp" wx:if="{{template.templateNo === 'icon'}}">
+        <block wx:for="{{template.templates}}" wx:for-item="item" wx:key="index">
+          <image id="index" class="iconImg" src="{{item.templateImg}}"></image>
+        </block>
+      </view>
+      <!-- D模版 -->
+      <view id="{{index}}" class="DTemp" wx:elif="{{template.templateNo === 'D'}}">
+        <block wx:for="{{template.templates}}" wx:for-item="item" wx:key="index">
+          <image id="index" class="DTempPic" src="{{item.templateImg}}"></image>
+        </block>
+        <scroll-view class="DGoodlist" scroll-x>
+          <block wx:for="{{template.goodsForD}}" wx:for-item="item" wx:key="index">
+            <view class="DItem" id="index">
+              <image class="DGoodPic" src="{{item.imgpath}}"></image>
+              <view class="DTitle">{{item.title}}</view>
+              <view class="DPrice">HK$ {{utils.toFixed(item.price)}}</view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </block>
+     <!-- Toplist商品 -->
+    <block wx:if="{{topList}}">
+      <view class="goodlist_title">熱賣產品</view> 
+      <view class="good-container">
+        <block wx:for="{{topList}}" wx:for-item="item" wx:key="index">
+        <view bindtap="toDetailsTap" data-id="{{item.id}}">
+          <template is="goodItem" data="{{...item}}"/>
+        </view>
+          
+        </block>
+      </view>
+    </block>
+    <!-- <block wx:for="{{postList}}" wx:for-item="item" wx:key="idx">
+        <view catchtap="onPostTap" data-postId="{{item.postId}}">
+             <template is="postItem" data="{{...item}}"/>
+        </view>
+    </block> -->
+</view>
