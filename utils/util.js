@@ -13,6 +13,9 @@ function convertToStarsArray(stars) {
 }
 
 function http(url,method, callBack) {
+  wx.showLoading({
+    title: '加载中',
+  })
   wx.request({
     url: url,
     method: method,
@@ -24,6 +27,8 @@ function http(url,method, callBack) {
     },
     fail: function (error) {
       console.log(error);
+    },
+    complete : function () {
       wx.hideLoading();
     }
   })

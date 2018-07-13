@@ -1,31 +1,32 @@
 <wxs module="utils" src="../../utils/utils.wxs"></wxs>
 <view class="detail-container">
-<swiper indicator-dots="true" autoplay="true" interval="5000">
-  <block wx:for="{{goodinfo.goodimages}}" wx:for-item="goodimage" wx:key="index">
-    <swiper-item id="{{index}}"><image class="img" src="{{goodimage}}"></image></swiper-item>
-  </block>
-</swiper>
+  <swiper indicator-dots="true" autoplay="true" interval="5000">
+    <block wx:for="{{goodinfo.goodimages}}" wx:for-item="goodimage" wx:key="index">
+      <swiper-item id="{{index}}"><image class="img" src="{{goodimage}}"></image></swiper-item>
+    </block>
+  </swiper>
   <view class="goods-price">
     <view class="goods-price-left">HKD <view class="price">${{goodinfo.priceHK}}</view></view>
-    <!-- <view class="good-price-right"></view> -->
   </view>
   <view class="goods-title">{{goodinfo.title}}</view>
   <view class="goods-weight">
-    <view class="country"><image class="country-img" src="{{goodinfo.country.logo}}"></image> <view class="country-name">{{goodinfo.country.cnName}}</view></view>
+    <view class="country"><image class="country-img" src="{{goodinfo.country.logo}}"></image>
+    <view class="country-name">{{goodinfo.country.cnName}}</view></view>
     <view class="weight">包裝重量： {{goodinfo.weight}}g</view>
   </view>
-  <view class="goods-price">
-    <view class="goods-price-left">HKD <view class="price">${{goodinfo.priceHK}}</view></view>
-    <!-- <view class="good-price-right"></view> -->
-  </view>
-  <view class="goods-title">{{goodinfo.title}}</view>
-  <view class="goods-weight">
-    <view class="country"><image class="country-img" src="{{goodinfo.country.logo}}"></image> <view class="country-name">{{goodinfo.country.cnName}}</view></view>
-    <view class="weight">包裝重量： {{goodinfo.weight}}g</view>
-  </view>
-  <view class="footer-box">
-    <view class="collect">收藏</view>
-    <view class="go-shop-cart">購物車</view>
+  <view class="goodsStyle">
+    <view class="goodsStyle_left">已選 {{goodinfo.ciqGmodel}}</view>
+    <view class="goodsStyle_right"><image class="right-icon" src="/images/goods-details/right.png"></image></view>
+  </view> 
+   <view class="footer-box">
+    <view class="collect">
+    <image class="footer-icon" src="/images/goods-details/collect.png"></image>
+    <view>收藏</view>
+    </view>
+    <view class="go-shop-cart">
+      <image class="footer-icon" src="/images/tab/gouwuche.png"></image>
+      <view>購物車</view> 
+    </view>
     <view class="join-shop-cart">加入購物車</view>
-  </view>
+  </view> 
 </view>

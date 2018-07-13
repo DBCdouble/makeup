@@ -24,7 +24,7 @@
         </block>
         <scroll-view class="DGoodlist" scroll-x>
           <block wx:for="{{template.goodsForD}}" wx:for-item="item" wx:key="index">
-            <view class="DItem" id="index">
+            <view class="DItem" id="index" bindtap="toDetailsTap" data-id="{{item.id}}">
               <image class="DGoodPic" src="{{item.imgpath}}"></image>
               <view class="DTitle">{{item.title}}</view>
               <view class="DPrice">HK$ {{utils.toFixed(item.price)}}</view>

@@ -7,15 +7,13 @@ Page({
     // 而这个动作A的执行，是在onLoad函数执行之后发生的
     bannerList:[],
     templateList:[],
-    topList:[]
+    topList:[],
+    topListNum:0
   },
   onLoad: function () {
    this.homeRequest();
   },
   homeRequest: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
     util.http(app.globalData.baseUrl + "/home?appkey=" + app.globalData.appkey, 'GET', (data) => {
       this.setData({
         postList: postsData.postList,
@@ -30,7 +28,6 @@ Page({
       this.setData({
         topList: data.data
       });
-      wx.hideLoading();
     });
   },
   toDetailsTap: function (e) {
@@ -40,12 +37,18 @@ Page({
   },
   onPostTap: function (event) {
     var postId = event.currentTarget.dataset.postid;
-    // console.log("on post id is" + postId);
     wx.navigateTo({
       url: "post-detail/post-detail?id=" + postId
     })
   },
-
+  onReachBottom: function () {
+    let { topListNum } = this.data;
+    topListNum += 12;
+    this.setData({ topListNum });
+    if( topListNum !== 12 ) {
+      this.topListRequest(topListNum);
+    }
+  }
   // onSwiperTap: function (event) {
   //   // target 和currentTarget
   //   // target指的是当前点击的组件 和currentTarget 指的是事件捕获的组件
