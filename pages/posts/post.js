@@ -7,8 +7,7 @@ Page({
     // 而这个动作A的执行，是在onLoad函数执行之后发生的
     bannerList:[],
     templateList:[],
-    topList:[],
-    topListNum:0
+    topList:[]
   },
   onLoad: function () {
    this.homeRequest();
@@ -42,11 +41,9 @@ Page({
     })
   },
   onReachBottom: function () {
-    let { topListNum } = this.data;
-    topListNum += 12;
-    this.setData({ topListNum });
-    if( topListNum !== 12 ) {
-      this.topListRequest(topListNum);
+    const { topList } = this.data;
+    if ( topList.length != 0) {
+      this.topListRequest(topList.length+12);
     }
   }
   // onSwiperTap: function (event) {

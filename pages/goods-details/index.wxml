@@ -14,9 +14,21 @@
     <view class="country-name">{{goodinfo.country.cnName}}</view></view>
     <view class="weight">包裝重量： {{goodinfo.weight}}g</view>
   </view>
-  <view class="goodsStyle">
+  <view class="goodsStyle" bindtap="goodStylesTap">
     <view class="goodsStyle_left">已選 {{goodinfo.ciqGmodel}}</view>
     <view class="goodsStyle_right"><image class="right-icon" src="/images/goods-details/right.png"></image></view>
+  </view>
+  <view class="show-popup" hidden="{{hidePopup}}">
+    <view class="popup-mask" bindtap="closePopup"></view>
+    <view class="popup-content">
+      <view class="popup-goodsinfo-box">
+        <view class="img-box"><image class="img" src="{{goodinfo.imgpath}}"></image></view>
+        <view class="price-box">HKD: <view class="red">${{goodinfo.priceHK}}</view></view>
+        <view class="close-box" bindtap="closePopup"><image class="close" src="/images/goods-details/close.png"></image></view>
+      </view>
+      <view class="popup-size-box"></view>
+      <view class="popup-num-box"></view>
+    </view>    
   </view> 
    <view class="footer-box">
     <view class="collect">

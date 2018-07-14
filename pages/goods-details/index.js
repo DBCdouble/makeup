@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    hidePopup:true
   },
 
   /**
@@ -29,6 +29,16 @@ Page({
     });
       
     
+  },
+  goodStylesTap: function () {
+    this.setData({
+      hidePopup:false
+    });
+  },
+  closePopup: function () {
+    this.setData({
+      hidePopup:true
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
