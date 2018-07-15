@@ -6,7 +6,7 @@
     </block>
   </swiper>
   <view class="goods-price">
-    <view class="goods-price-left">HKD <view class="price">${{goodinfo.priceHK}}</view></view>
+    <view class="goods-price-left">HKD <view class="price">${{goodinfo.priceHK?utils.toFixed(goodinfo.priceHK):''}}</view></view>
   </view>
   <view class="goods-title">{{goodinfo.title}}</view>
   <view class="goods-weight">
@@ -23,17 +23,29 @@
     <view class="popup-content">
       <view class="popup-goodsinfo-box">
         <view class="img-box"><image class="img" src="{{goodinfo.imgpath}}"></image></view>
-        <view class="price-box">HKD: <view class="red">${{goodinfo.priceHK}}</view></view>
+        <view class="price-box">HKD: <view class="red">${{goodinfo.priceHK?utils.toFixed(goodinfo.priceHK):''}}</view></view>
         <view class="close-box" bindtap="closePopup"><image class="close" src="/images/goods-details/close.png"></image></view>
       </view>
-      <view class="popup-size-box"></view>
-      <view class="popup-num-box"></view>
+      <view class="popup-size-box">
+        <block wx:for="{{goodStyles}}" wx:for-item="item" wx:key="index"> 
+          <view class="{{goodinfo.ciqGmodel == item.ciqGmodel?'size-box-item red':'size-box-item'}}" data-ciqGmodel="{{item.ciqGmodel}}" data-id="{{item.id}}" bindtap="ciqGmodelTap">{{item.ciqGmodel}}</view>
+        </block> 
+      </view>
+      <view class="popup-num-box">
+        <view class="left">数量：</view>
+        <view class="right">
+          <view class="right-item" bindtap="count" data-type="minus">-</view>
+          <view class="right-item"><input type="number" value="{{quantity}}" bindinput="quantityChange"></input></view>
+          <view class="right-item" bindtap="count" data-type="plus">+</view>
+        </view>
+      </view>
+      <view class="popup-join" bindtap="closePopup">加入購物車</view>
     </view>    
   </view> 
    <view class="footer-box">
     <view class="collect">
-    <image class="footer-icon" src="/images/goods-details/collect.png"></image>
-    <view>收藏</view>
+      <image class="footer-icon" src="/images/goods-details/collect.png"></image>
+      <view>收藏</view>
     </view>
     <view class="go-shop-cart">
       <image class="footer-icon" src="/images/tab/gouwuche.png"></image>

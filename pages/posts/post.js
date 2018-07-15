@@ -11,6 +11,7 @@ Page({
   },
   onLoad: function () {
    this.homeRequest();
+   this.topListRequest(12);
   },
   homeRequest: function () {
     util.http(app.globalData.baseUrl + "/home?appkey=" + app.globalData.appkey, 'GET', (data) => {
@@ -19,7 +20,6 @@ Page({
         bannerList: data.home.banners,
         templateList: data.home.templates
       });
-      this.topListRequest(12);
     });
   },
   topListRequest: function (num) {
@@ -45,6 +45,11 @@ Page({
     if ( topList.length != 0) {
       this.topListRequest(topList.length+12);
     }
+  },
+  onPullDownRefresh: function () {
+    const { topList } = this.data;
+    this.homeRequest();
+    this.topListRequest(topList.length>0?topList.length:12);
   }
   // onSwiperTap: function (event) {
   //   // target 和currentTarget

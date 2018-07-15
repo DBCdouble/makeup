@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hidePopup:true
+    hidePopup:true,
+    quantity:1
   },
 
   /**
@@ -34,6 +35,30 @@ Page({
     this.setData({
       hidePopup:false
     });
+  },
+  ciqGmodelTap: function (event) {
+    let { id, ciqgmodel } = event.target.dataset;
+    let { goodinfo } = this.data;
+    goodinfo.ciqGmodel = ciqgmodel;
+    this.setData({
+      goodinfo
+    });
+  },
+  quantityChange: function (value) {
+    this.setData({
+      quantity: value.detail.value
+    });
+  },
+  count: function (event) {
+    const { type } = event.target.dataset;
+    let quantity = Number(this.data.quantity); 
+    console.log(quantity);
+    if ( type === "minus" && quantity > 1) {
+      quantity-=1;
+    }else if ( type === "plus" ) {
+      quantity+=1
+    }
+    this.setData({quantity});
   },
   closePopup: function () {
     this.setData({

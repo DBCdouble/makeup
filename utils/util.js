@@ -30,6 +30,7 @@ function http(url,method, callBack) {
     },
     complete : function () {
       wx.hideLoading();
+      wx.stopPullDownRefresh();
     }
   })
 }
