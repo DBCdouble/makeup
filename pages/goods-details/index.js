@@ -31,10 +31,30 @@ Page({
       
     
   },
-  goodStylesTap: function () {
-    this.setData({
-      hidePopup:false
+  animation: function (bool) {
+    
+  },
+  openPopup: function () {
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: "linear",
+      delay: 0
     });
+    this.animation = animation;
+    animation.translateY(300).step();
+    this.setData({
+      animationData: animation.export(),
+      hidePopup: false
+    });
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 100);
+    // this.setData({
+    //   hidePopup:false
+    // });
   },
   ciqGmodelTap: function (event) {
     let { id, ciqgmodel } = event.target.dataset;
@@ -61,9 +81,23 @@ Page({
     this.setData({quantity});
   },
   closePopup: function () {
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
     this.setData({
-      hidePopup:true
-    });
+      animationData: animation.export(),
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        hidePopup: true
+      })
+    }.bind(this), 100)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

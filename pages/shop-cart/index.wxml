@@ -1,0 +1,9 @@
+<import src="./shopping-item/index.wxml" />
+<view>
+  <view class="shoplist" wx:if="!shoppingList">
+    <block wx:for="shoppingList" wx:key="index">
+      <template is="shopping-item" id="{{index}}"></template>
+    </block>
+  </view>
+  <view wx:else>您的購物車是空的</view>
+</view>

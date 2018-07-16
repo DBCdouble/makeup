@@ -1,0 +1,101 @@
+.my-container{
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background-color:#F5F5F5;
+}
+.my-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 50rpx 0;
+  color:#FFFFFF;
+  background:linear-gradient(to right, #FE6B5B, #E92546);
+  background:-webkit-linear-gradient(left, #FE6B5B, #E92546);
+  background:-o-linear-gradient(right, #FE6B5B, #E92546);
+  background:-moz-linear-gradient(right, #FE6B5B, #E92546);
+}
+.avatar-box{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  
+  overflow: hidden;
+  margin-left: 50rpx;
+  padding: 5rpx;
+  background-color: #FFFFFF;
+}
+.avatar{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.nickname-box{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 30rpx;
+}
+.nickname{
+  font-size:30rpx;
+  margin-bottom: 20rpx;
+}
+.usertype{
+  text-align: center;
+  border: 1px solid #FFFFFF;
+  border-radius: 8rpx;
+  font-size:30rpx;
+}
+.address-box{
+  
+}
+.my-bill{
+  width: 100%;
+  color: #333333;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+.all{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 26rpx;
+  border-bottom: 1px solid #F5F5F5;
+  background-color: #FFFFFF;
+}
+.all-left{
+  flex: 1;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.all-right{
+  flex:1;
+  font-size: 26rpx;
+  color:#A8A8A8;
+  text-align: right;
+  overflow: hidden;
+}
+.all-right .icon{
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+}
+.status-box{
+  display: flex;
+  flex-direction: row;
+  padding: 18rpx 0;
+  overflow: hidden;
+  background-color:#FFFFFF;
+}
+.status{
+  flex:1;
+  font-size: 22rpx;
+  text-align: center;
+}
+.status .text{
+  margin-top: 10rpx;
+}
+.status .pic{
+  width: 50rpx;
+  height: 50rpx;
+}

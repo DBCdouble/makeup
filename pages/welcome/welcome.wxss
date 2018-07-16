@@ -37,6 +37,7 @@
     font-weight: bold;
     line-height:80rpx;
     color: #ffffff;
+    background-color: inherit;
 }
 
 page{

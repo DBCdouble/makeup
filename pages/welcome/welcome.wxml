@@ -1,7 +1,7 @@
 <view class="container">
     <image class="avatar" src="/images/avatar/1.png"></image>
     <text class="motto">香港正品 實惠之選</text>
-    <view class="journey-container" bindtap="onTap">
-        <text class="journey">進入港顏美妝</text>
+    <view class="journey-container">
+        <button open-type="getUserInfo" class="journey" bindgetuserinfo="bindGetUserInfo">進入港顏美妝</button>
     </view>
 </view>

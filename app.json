@@ -3,16 +3,18 @@
     "pages/welcome/welcome",
     "pages/posts/post",
     "pages/goods-details/index",
-    "pages/movies/movies",
-    "pages/movies/movie-detail/movie-detail",
     "pages/posts/post-detail/post-detail",
-    "pages/movies/more-movie/more-movie"
+    "pages/my/index",
+    "pages/shop-cart/index",
+    "pages/classify/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#E41438"
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "borderStyle": "white",
+    "backgroundColor":"#FFFFFF",
     "position": "bottom",
     "color": "#545454",
     "selectedColor": "#E41438",
@@ -24,19 +26,19 @@
         "selectedIconPath": "images/tab/index_on.png"
       },
       {
-        "pagePath": "pages/movies/movies",
+        "pagePath": "pages/classify/index",
         "text": "分類",
         "iconPath": "images/tab/fenlei.png",
         "selectedIconPath": "images/tab/fenlei_on.png"
       },
       {
-        "pagePath": "pages/posts/post",
+        "pagePath": "pages/shop-cart/index",
         "text": "購物車",
         "iconPath": "images/tab/gouwuche.png",
         "selectedIconPath": "images/tab/gouwuche_on.png"
       },
       {
-        "pagePath": "pages/posts/post",
+        "pagePath": "pages/my/index",
         "text": "我的",
         "iconPath": "images/tab/user.png",
         "selectedIconPath": "images/tab/user_on.png"

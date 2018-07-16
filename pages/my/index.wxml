@@ -1,0 +1,38 @@
+<view class="my-container">
+  <!-- 模块分割线 -->
+  <view class="my-info">
+    <view class="avatar-box"><image class="avatar" src="{{userInfo.avatarUrl}}"></image></view>
+    <view class="nickname-box">
+      <view class="nickname">{{userInfo.nickName}}</view>
+      <view class="usertype">普通用户</view>
+    </view>
+    <view class="address-box"></view>
+  </view>
+  <!-- 模块分割线 -->
+  <view class="my-bill">
+    <view class="all">
+      <view class="all-left">直郵訂單</view>
+      <view class="all-right">查看更多訂單<image class="icon" src="/images/my/right.png"></image></view>
+    </view>
+    <view class="status-box">
+      <view class="status">
+        <image class="pic" src="/images/my/1.png"></image>
+        <view class="text">待付款</view>
+      </view>
+      <view class="status">
+        <image class="pic" src="/images/my/2.png"></image>
+        <view class="text">待發貨</view>
+      </view>
+      <view class="status">
+        <image class="pic" src="/images/my/3.png"></image>
+        <view class="text">待收貨</view>
+      </view>
+      <view class="status">
+        <image class="pic" src="/images/my/4.png"></image>  
+        <view class="text">待評價</view>
+      </view>
+    </view>
+  </view>
+  <!-- 模块分割线 -->
+  <view class="my-item"></view>  
+</view>
