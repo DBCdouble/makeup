@@ -1,1 +1,1 @@
-@import "shopping-item/index.wxss";
+@import "./shopping-item/index.wxss";

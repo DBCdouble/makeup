@@ -36,7 +36,7 @@ Page({
   },
   openPopup: function () {
     var animation = wx.createAnimation({
-      duration: 100,
+      duration: 200,
       timingFunction: "linear",
       delay: 0
     });
@@ -51,7 +51,7 @@ Page({
       this.setData({
         animationData: animation.export()
       })
-    }.bind(this), 100);
+    }.bind(this), 200);
     // this.setData({
     //   hidePopup:false
     // });
@@ -82,7 +82,7 @@ Page({
   },
   closePopup: function () {
     var animation = wx.createAnimation({
-      duration: 100,
+      duration: 200,
       timingFunction: "linear",
       delay: 0
     })
@@ -97,7 +97,7 @@ Page({
         animationData: animation.export(),
         hidePopup: true
       })
-    }.bind(this), 100)
+    }.bind(this), 200)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

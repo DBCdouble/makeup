@@ -1,3 +1,19 @@
 <template name="shopping-item">
-<view>asdasd</view>
+  <view class="item-container">
+    <view class="item-check">1</view>
+    <view class="item-img-box">
+      <image class="item-img" src="{{imgpath}}"></image>
+    </view>
+    <view class="item-info">
+      <view class="item-top">{{title}}</view>
+      <view class="item-bottom">
+        <view class="item-price">{{price}}</view>
+        <view class="item-quantity">
+          <view class="minus">-</view>
+          <view class="input"><input type="" value="quantity" bindinput="quantityChange"></input></view>
+          <view class="plus">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
