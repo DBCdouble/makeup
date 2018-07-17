@@ -1,19 +1,24 @@
 <template name="shopping-item">
-  <view class="item-container">
-    <view class="item-check">1</view>
-    <view class="item-img-box">
-      <image class="item-img" src="{{imgpath}}"></image>
-    </view>
-    <view class="item-info">
-      <view class="item-top">{{title}}</view>
-      <view class="item-bottom">
-        <view class="item-price">{{price}}</view>
-        <view class="item-quantity">
-          <view class="minus">-</view>
-          <view class="input"><input type="" value="quantity" bindinput="quantityChange"></input></view>
-          <view class="plus">+</view>
+  <view class="container">
+    <view class="inner" bindtouchstart='touchS'>
+      <view class="item-container">
+        <view class="item-check"><image class="gougou" src="/images/shop-cart/gougou.png"></image></view>
+        <view class="item-img-box">
+          <image class="item-img" src="{{imgpath}}"></image>
+        </view>
+        <view class="item-info">
+          <view class="item-top">{{title}}</view>
+          <view class="item-bottom">
+            <view class="item-price">HK${{price}}</view>
+            <view class="item-quantity">
+              <view class="count">-</view>
+              <view class="count"><input type="number" value="{{quantity}}" bindinput="quantityChange"></input></view>
+              <view class="count">+</view>
+            </view>
+          </view>
         </view>
       </view>
+      <view class="del">删除</view>
     </view>
   </view>
 </template>

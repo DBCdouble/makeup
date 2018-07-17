@@ -2,6 +2,6 @@
    "navigationBarTitleText":"港顏美妝",
    "navigationBarBackgroundColor": "#FFFFFF",
    "navigationStyle": "custom",
-    "enablePullDownRefresh": true,
-    "onReachBottomDistance":300
+   "enablePullDownRefresh": true,
+   "onReachBottomDistance":300
 }

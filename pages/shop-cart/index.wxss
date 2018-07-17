@@ -1,1 +1,11 @@
 @import "./shopping-item/index.wxss";
+page{
+  background-color: #F5F5F5;
+}
+.cart-container{
+  background-color: #F5F5F5;
+}
+.shoplist{
+  background-color: #FFFFFF;
+  margin-bottom: 100rpx;
+}
