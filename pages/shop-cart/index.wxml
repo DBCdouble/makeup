@@ -2,7 +2,7 @@
 <view class="cart-container">
   <view class="shoplist" wx:if="{{shoppingList}}">
     <block wx:for="{{shoppingList}}" wx:for-item="item" wx:key="index">
-      <template is="shopping-item" data="{{...item}}"></template>
+      <template is="shopping-item" data="{{...item,index}}"></template>
     </block>
   </view>
   <view wx:else>您的購物車是空的</view>

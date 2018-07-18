@@ -7,5 +7,5 @@ page{
 }
 .shoplist{
   background-color: #FFFFFF;
-  margin-bottom: 100rpx;
+  padding-bottom: 100rpx;
 }

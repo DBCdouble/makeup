@@ -14,19 +14,23 @@ Page({
    this.topListRequest(12);
   },
   homeRequest: function () {
+    console.time("首页模块请求时间");
     util.http(app.globalData.baseUrl + "/home?appkey=" + app.globalData.appkey, 'GET', (data) => {
       this.setData({
         postList: postsData.postList,
         bannerList: data.home.banners,
         templateList: data.home.templates
       });
+      console.timeEnd("首页模块请求时间");
     });
   },
   topListRequest: function (num) {
+    console.time("热卖商品列表请求时间");
     util.http(app.globalData.baseUrl + "/top/goodsList?appkey=" + app.globalData.appkey +"&num="+num, 'GET', (data) => {
       this.setData({
         topList: data.data
       });
+      console.timeEnd("热卖商品列表请求时间");
     });
   },
   toDetailsTap: function (e) {

@@ -16,20 +16,29 @@ Page({
     this.getShoppingList();
   },
   getShoppingList: function () {
+    console.time("获取购物车列表时间");
     utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=7589","GET", (data)=>{
       this.setData({
         shoppingList: data.data.shoppingList
       });
+      console.timeEnd("获取购物车列表时间");
     });
   },
-  getQuantity: function (value) {
-    console.log(value);
+  //数量输入框change事件
+  quantityChange: function (event) {
+    const quantity = event.detail.value;
+    const index = event.target.dataset.index;
+    let { shoppingList } = this.data;
+    shoppingList[index].quantity = quantity;
+    this.setData({
+      shoppingList
+    });
+    console.log(shoppingList);
   },
-  touchS: function (e) {
-    console.log(e);
+  quantityBox: function (event) {
+    console.log(event);
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
+   /* 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
     

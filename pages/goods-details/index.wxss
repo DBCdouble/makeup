@@ -84,7 +84,10 @@ swiper-item{
   color:#666666;
 }
 .goodsStyle_left{
-  flex:1;
+  /* flex:1; */
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .goodsStyle_right{
   flex:1;

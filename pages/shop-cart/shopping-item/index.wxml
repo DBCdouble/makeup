@@ -1,6 +1,6 @@
 <template name="shopping-item">
   <view class="container">
-    <view class="inner" bindtouchstart='touchS'>
+    <view class="inner">
       <view class="item-container">
         <view class="item-check"><image class="gougou" src="/images/shop-cart/gougou.png"></image></view>
         <view class="item-img-box">
@@ -10,9 +10,9 @@
           <view class="item-top">{{title}}</view>
           <view class="item-bottom">
             <view class="item-price">HK${{price}}</view>
-            <view class="item-quantity">
+            <view class="item-quantity" bindtap='quantityBox'>
               <view class="count">-</view>
-              <view class="count"><input type="number" value="{{quantity}}" bindinput="quantityChange"></input></view>
+              <view class="count"><input type="number" value="{{quantity}}" bindinput="quantityChange" data-index="{{index}}"></input></view>
               <view class="count">+</view>
             </view>
           </view>
