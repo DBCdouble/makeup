@@ -2,7 +2,7 @@
   width: 372rpx;
   height: 523rpx;
   background-color: #FFFFFF;
-  margin-bottom: 10rpx;
+  border-bottom: 2px solid #F5F5F5;
   overflow:hidden;
 }
 .img-box{

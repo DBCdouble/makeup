@@ -76,6 +76,9 @@
   overflow: hidden;
   align-items: center;
 }
+.item-bottom .item-quantity .disabled{
+  color:#F5F5F5;
+}
 .item-bottom .item-quantity .count{
   width: 50rpx;
   height: 50rpx;
@@ -93,57 +96,4 @@
 .item-bottom .item-quantity .count:nth-of-type(3){
   border: 1px solid #F5F5F5;
   border-left: 0px;
-}
-.accounts-box{
-  position: fixed;
-  z-index: 10;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100rpx;
-  box-shadow: 0 5px 10px 5px #666666;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #FFFFFF;
-  font-size: 30rpx;
-}
-.all-check{
-  flex: 1;
-  display:flex;
-  flex-direction:row;
-  margin-left: 20rpx;
-}
-.all-check .check-box{
-  width: 40rpx;
-  height: 40rpx;
-  overflow: hidden;
-}
-.all-check .check-box .check{
-  width: 40rpx;
-  height: 40rpx;
-}
-.all-check .check-text{
-  margin-left: 20rpx;
-}
-.total{
-  flex: 2;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-}
-.total .total-text{
-  font-weight: bold;
-}
-.total .total-price{
-  margin-left: 20rpx;
-  color:#E41438;
-}
-.account-btn{
-  flex:1.5;
-  text-align: center;
-  height: 100rpx;
-  line-height: 100rpx;
-  background-color: #E41438;
-  color: #FFFFFF;
 }

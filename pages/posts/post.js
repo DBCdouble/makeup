@@ -54,6 +54,10 @@ Page({
     const { topList } = this.data;
     this.homeRequest();
     this.topListRequest(topList.length>0?topList.length:12);
+  },
+  // 点击搜索框弹出搜索页面
+  openSearch: function (event) {
+    
   }
   // onSwiperTap: function (event) {
   //   // target 和currentTarget

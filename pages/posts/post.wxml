@@ -3,6 +3,11 @@
 <wxs module="utils" src="../../utils/utils.wxs"></wxs>
 <!--<import src="/pages/posts/post-item/post-item-template.wxml" />-->
 <view class="post">
+    <view class="title-box">
+      <view class="msg-box"><image class="msg-img" src="/images/post/msg.png"></image></view>
+      <view class="title-text">港颜美妝</view>
+    </view>
+    <view class="search-box"><input type="text" placeholder="搜索" bindtap="openSearch" disabled></input></view>
     <swiper catchtap="onSwiperTap" vertical="{{false}}" indicator-dots="true" autoplay="true" interval="5000">
       <block wx:for="{{bannerList}}" wx:for-item="item" wx:key="index">
         <swiper-item>
@@ -45,6 +50,7 @@
         </block>
       </view>
     </block>
+    <view class="loading">加載中...</view>
     <!-- <block wx:for="{{postList}}" wx:for-item="item" wx:key="idx">
         <view catchtap="onPostTap" data-postId="{{item.postId}}">
              <template is="postItem" data="{{...item}}"/>

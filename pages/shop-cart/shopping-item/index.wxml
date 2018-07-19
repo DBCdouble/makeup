@@ -2,7 +2,7 @@
   <view class="container">
     <view class="inner">
       <view class="item-container">
-        <view class="item-check"><image class="gougou" src="/images/shop-cart/gougou.png"></image></view>
+        <view class="item-check" catchtap="selectChange" data-index="{{index}}"><image data-index="{{index}}" class="gougou" src="/images/shop-cart/{{select ? 'gougou_sel.png':'gougou.png'}}"></image></view>
         <view class="item-img-box">
           <image class="item-img" src="{{imgpath}}"></image>
         </view>
@@ -11,9 +11,9 @@
           <view class="item-bottom">
             <view class="item-price">HK${{price}}</view>
             <view class="item-quantity" bindtap='quantityBox'>
-              <view class="count">-</view>
+              <view class="count {{quantity>1?'':'disabled'}}" catchtap="count" data-index="{{index}}" data-opt="minus">-</view>
               <view class="count"><input type="number" value="{{quantity}}" bindinput="quantityChange" data-index="{{index}}"></input></view>
-              <view class="count">+</view>
+              <view class="count" catchtap="count" data-index="{{index}}" data-opt="plus">+</view>
             </view>
           </view>
         </view>
