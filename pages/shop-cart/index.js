@@ -6,7 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shoppingList:[]
+    shoppingList:[],
+    allSelect:true,
+    noSelect:false,
+    totolPrice:0,
+    saveHidden:true
   },
 
   /**
@@ -18,9 +22,6 @@ Page({
   getShoppingList: function () {
     console.time("获取购物车列表时间");
     utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=7589","GET", (data)=>{
-      data.data.shoppingList.map( item => {
-        item.select = false;
-      });
       this.setData({
         shoppingList: data.data.shoppingList
       });
@@ -40,7 +41,6 @@ Page({
   },
   // 单个商品勾选
   selectChange: function (event) {
-    console.log(event);
     const { index } = event.target.dataset;
     let { shoppingList } = this.data;
     let select =  shoppingList[index].select;
@@ -68,8 +68,44 @@ Page({
       shoppingList
     });
   },
-  quantityBox: function (event) {
-    console.log(event);
+  // 获取编辑删除状态
+  getSaveHidden: function () {
+    const saveHidden = this.data.goodsList.saveHidden;
+    return saveHidden;
+  },
+  // 获取选中商品的金额
+  getTotalPrice: function () {
+    const { shoppingList } = this.data;
+    let totalPrice = 0;
+    for(let i =0;i<shoppingList.length;i++) {
+      if(shoppingList[i].select) {
+        totalPrice += shoppingList[i].price * shoppingList[i].quantity;
+      }
+    }
+    totalPrice = totalPrice.toFixed(2);
+    return totalPrice;
+  },
+  // 获取是否全选
+  getAllSelect: function () {
+    const { shoppingList } = this.data;
+    let allSelect = false;
+    for(let i= 0;i<shoppingList.length;i++) {
+      if (shoppingList[i].select) {
+        allSelect = true;
+      } else {
+        allSelect = false;
+        break;
+      }
+    }
+    return allSelect;
+  },
+  //重置商品列表
+  setGoodsList: function ( saveHidden , totalPirce , allSelect ) {
+    this.setData({
+      saveHidden,
+      totalPirce,
+      allSelect
+    });
   },
    /* 生命周期函数--监听页面初次渲染完成
    */

@@ -5,6 +5,32 @@ page{
 .cart-container{
   background-color: #F5F5F5;
 }
+.title-box{
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #FFFFFF;
+   color: #E31436;
+   font-size: 36rpx;
+   line-height: 70rpx;
+   padding: 50rpx 24rpx 10rpx;
+   font-weight:600;
+   border-bottom:1px solid #F5F5F5;
+ }
+ .title-text{
+
+ }
+.edit-box{
+  text-align: right;
+  color: #999;
+}
+.edit-box .text{
+  font-size: 30rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  margin-right: 24rpx;
+}
 .shoplist{
   background-color: #FFFFFF;
   padding-bottom: 100rpx;

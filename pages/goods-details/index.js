@@ -31,6 +31,11 @@ Page({
       
     
   },
+  goback: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   animation: function (bool) {
     
   },

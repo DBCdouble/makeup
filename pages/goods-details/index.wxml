@@ -1,5 +1,8 @@
 <wxs module="utils" src="../../utils/utils.wxs"></wxs>
 <view class="detail-container">
+  <view class="msg-box" bindtap="goback">
+      <image class="msg-img" src="/images/goods-details/return.png"></image>
+  </view>
   <swiper indicator-dots="true" autoplay="true" interval="5000">
     <block wx:for="{{goodinfo.goodimages}}" wx:for-item="goodimage" wx:key="index">
       <swiper-item id="{{index}}"><image class="img" src="{{goodimage}}"></image></swiper-item>

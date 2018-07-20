@@ -9,8 +9,10 @@
    background-color:#F5F5F5; 
  }
  .title-box{
+   position: relative;
    display: flex;
    align-items: center;
+   justify-content: center;
    background-color: #FFFFFF;
    color: #E31436;
    font-size: 36rpx;
@@ -19,9 +21,10 @@
    font-weight:600;
  }
  .title-text{
-   text-align: center;
  }
  .msg-box{
+   position: absolute;
+   left: 24rpx;
    width: 45rpx;
    height: 45rpx;
    overflow: hidden;

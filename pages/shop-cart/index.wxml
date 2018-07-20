@@ -1,11 +1,22 @@
 <import src="./shopping-item/index.wxml"/>
 <view class="cart-container">
-  <view class="shoplist" wx:if="{{shoppingList}}">
-    <block wx:for="{{shoppingList}}" wx:for-item="item" wx:key="index">
-      <template is="shopping-item" data="{{...item,index}}"></template>
-    </block>
+  <view class="title-box">
+    <view class="title-text">购物车</view>
   </view>
-  <view wx:else>您的購物車是空的</view>
+  <block wx:if="{{shoppingList.length>0}}">
+    <view class="edit-box" hidden="{{!saveHidden}}"><text class="text" bindtap="edit">编辑</text></view>
+    <view class="edit-box" hidden="{{saveHidden}}"><text class="text">完成</text></view>
+  </block>
+  <block wx:if="{{shoppingList.length>0}}">
+    <view class="shoplist">
+      <block wx:for="{{shoppingList}}" wx:for-item="item" wx:key="index">
+        <template is="shopping-item" data="{{...item,index}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:else>
+    <view></view>
+  </block>
   <view class="accounts-box">
     <view class="all-check">
       <view class="check-box"><image class="check" src="/images/shop-cart/gougou.png"></image></view>
@@ -15,6 +26,7 @@
       <view class="total-text">合計:</view>
       <view class="total-price">￥20.00</view>
     </view>
-    <view class="account-btn">去結算</view>
+    <view class="account-btn" hidden="{{!saveHidden}}">去結算</view>
+    <view class="account-btn" hidden="{{saveHidden}}">删除</view>
   </view>
 </view>

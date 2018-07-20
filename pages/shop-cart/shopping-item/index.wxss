@@ -47,7 +47,7 @@
   height: 160rpx; 
 }
 .item-info{
-  width: 420rpx;
+  width: 450rpx;
   margin-left: 30rpx;
   font-size:28rpx;
 }
@@ -59,7 +59,7 @@
   color:#272727;
 }
 .item-bottom{
-  width: 420rpx;
+  width: 450rpx;
   display: flex;
   flex-direction: row;
   margin-top: 75rpx;
@@ -80,9 +80,9 @@
   color:#F5F5F5;
 }
 .item-bottom .item-quantity .count{
-  width: 50rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  width: 55rpx;
+  height: 55rpx;
+  line-height: 55rpx;
   text-align: center;
   font-size: 32rpx;
 }
