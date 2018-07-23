@@ -9,8 +9,9 @@ Page({
     shoppingList:[],
     allSelect:true,
     noSelect:false,
-    totolPrice:0,
-    saveHidden:true
+    totalPrice:0,
+    saveHidden:true,
+    delBtnWidth:120
   },
 
   /**
@@ -37,21 +38,14 @@ Page({
     this.setData({
       shoppingList
     });
-    console.log(shoppingList);
+    this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), shoppingList);
   },
   // 单个商品勾选
   selectChange: function (event) {
     const { index } = event.target.dataset;
     let { shoppingList } = this.data;
-    let select =  shoppingList[index].select;
-    if (select) {
-      shoppingList[index].select = false;
-    } else {
-      shoppingList[index].select = true;
-    }
-    this.setData({
-      shoppingList
-    });
+    shoppingList[index].select = !shoppingList[index].select;
+    this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), shoppingList);
   },
   //单个商品的数量加减事件
   count: function (event) {
@@ -64,13 +58,11 @@ Page({
     } else if( opt === "plus" ) {
       shoppingList[index].quantity = Number(quantity) + 1;
     }
-    this.setData({
-      shoppingList
-    });
+    this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), shoppingList);
   },
   // 获取编辑删除状态
   getSaveHidden: function () {
-    const saveHidden = this.data.goodsList.saveHidden;
+    const saveHidden = this.data.saveHidden;
     return saveHidden;
   },
   // 获取选中商品的金额
@@ -83,6 +75,7 @@ Page({
       }
     }
     totalPrice = totalPrice.toFixed(2);
+    console.log(totalPrice);
     return totalPrice;
   },
   // 获取是否全选
@@ -100,12 +93,63 @@ Page({
     return allSelect;
   },
   //重置商品列表
-  setGoodsList: function ( saveHidden , totalPirce , allSelect ) {
+  setGoodsList: function (saveHidden, totalPrice, allSelect, shoppingList) {
     this.setData({
       saveHidden,
-      totalPirce,
-      allSelect
+      totalPrice,
+      allSelect,
+      shoppingList
     });
+  },
+  //滑动开始事件
+  touchS: function (e) {
+    console.log(e);
+    if (e.touches.length == 1) {
+      this.setData({
+        startX: e.touches[0].clientX
+      });
+    }
+  },
+  //滑动移动事件
+  touchM: function (e) {
+    var index = e.currentTarget.dataset.index;
+    console.log(e);
+    if (e.touches.length == 1) {
+      var moveX = e.touches[0].clientX;
+      var disX = this.data.startX - moveX;
+      var delBtnWidth = this.data.delBtnWidth;
+      var left = "";
+      if (disX == 0 || disX < 0) {//如果移动距离小于等于0，container位置不变
+        left = "margin-left:0px";
+      } else if (disX > 0) {//移动距离大于0，container left值等于手指移动距离
+        left = "margin-left:-" + disX + "px";
+        if (disX >= delBtnWidth) {
+          left = "left:-" + delBtnWidth + "px";
+        }
+      }
+      var shoppingList = this.data.shoppingList;
+      if (index != "" && index != null) {
+        shoppingList[parseInt(index)].left = left;
+        this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), shoppingList);
+      }
+    }
+  },
+  //滑动结束事件
+  touchE: function (e) {
+    var index = e.currentTarget.dataset.index;
+    if (e.changedTouches.length == 1) {
+      var endX = e.changedTouches[0].clientX;
+      var disX = this.data.startX - endX;
+      var delBtnWidth = this.data.delBtnWidth;
+      //如果距离小于删除按钮的1/2，不显示删除按钮
+      var left = disX > delBtnWidth / 2 ? "margin-left:-" + delBtnWidth + "px" : "margin-left:0px";
+      var shoppingList = this.data.shoppingList;
+      if (index !== "" && index != null) {
+        shoppingList[parseInt(index)].left = left;
+        this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), shoppingList);
+
+      }
+    }
   },
    /* 生命周期函数--监听页面初次渲染完成
    */

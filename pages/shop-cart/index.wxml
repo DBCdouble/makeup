@@ -1,8 +1,6 @@
 <import src="./shopping-item/index.wxml"/>
 <view class="cart-container">
-  <view class="title-box">
-    <view class="title-text">购物车</view>
-  </view>
+  <view class="title-box">购物车</view>
   <block wx:if="{{shoppingList.length>0}}">
     <view class="edit-box" hidden="{{!saveHidden}}"><text class="text" bindtap="edit">编辑</text></view>
     <view class="edit-box" hidden="{{saveHidden}}"><text class="text">完成</text></view>
@@ -24,7 +22,7 @@
     </view>
     <view class="total">
       <view class="total-text">合計:</view>
-      <view class="total-price">￥20.00</view>
+      <view class="total-price">￥{{totalPrice}}</view>
     </view>
     <view class="account-btn" hidden="{{!saveHidden}}">去結算</view>
     <view class="account-btn" hidden="{{saveHidden}}">删除</view>

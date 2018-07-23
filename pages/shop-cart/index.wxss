@@ -6,15 +6,17 @@ page{
   background-color: #F5F5F5;
 }
 .title-box{
-   position: relative;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+   position: fixed;
+   left: 0;
+   top: 0;
+   z-index: 10;
+   width: 100%;
+   text-align: center;
    background-color: #FFFFFF;
    color: #E31436;
    font-size: 36rpx;
    line-height: 70rpx;
-   padding: 50rpx 24rpx 10rpx;
+   padding: 50rpx 0 10rpx;
    font-weight:600;
    border-bottom:1px solid #F5F5F5;
  }
@@ -24,6 +26,7 @@ page{
 .edit-box{
   text-align: right;
   color: #999;
+  padding-top:130rpx; 
 }
 .edit-box .text{
   font-size: 30rpx;

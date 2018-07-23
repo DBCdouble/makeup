@@ -1,6 +1,6 @@
 <template name="shopping-item">
   <view class="container">
-    <view class="inner">
+    <view class="inner" bindtouchstart='touchS' bindtouchmove='touchM' bindtouchend='touchE' style="{{left}}" data-index="{{index}}">
       <view class="item-container">
         <view class="item-check" catchtap="selectChange" data-index="{{index}}"><image data-index="{{index}}" class="gougou" src="/images/shop-cart/{{select ? 'gougou_sel.png':'gougou.png'}}"></image></view>
         <view class="item-img-box">
