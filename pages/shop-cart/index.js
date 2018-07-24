@@ -23,9 +23,13 @@ Page({
   getShoppingList: function () {
     console.time("获取购物车列表时间");
     utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=7589","GET", (data)=>{
+      data.data.shoppingList.map(item =>{
+        item.select = false;
+      });
       this.setData({
         shoppingList: data.data.shoppingList
       });
+      console.log(this.data.shoppingList);
       console.timeEnd("获取购物车列表时间");
     });
   },
@@ -120,11 +124,11 @@ Page({
       var delBtnWidth = this.data.delBtnWidth;
       var left = "";
       if (disX == 0 || disX < 0) {//如果移动距离小于等于0，container位置不变
-        left = "margin-left:0px";
+        left = "margin-left:0rpx";
       } else if (disX > 0) {//移动距离大于0，container left值等于手指移动距离
-        left = "margin-left:-" + disX + "px";
+        left = "margin-left:-" + disX + "rpx";
         if (disX >= delBtnWidth) {
-          left = "left:-" + delBtnWidth + "px";
+          left = "left:-" + delBtnWidth + "rpx";
         }
       }
       var shoppingList = this.data.shoppingList;
@@ -142,7 +146,7 @@ Page({
       var disX = this.data.startX - endX;
       var delBtnWidth = this.data.delBtnWidth;
       //如果距离小于删除按钮的1/2，不显示删除按钮
-      var left = disX > delBtnWidth / 2 ? "margin-left:-" + delBtnWidth + "px" : "margin-left:0px";
+      var left = disX > delBtnWidth / 2 ? "margin-left:-" + delBtnWidth + "rpx" : "margin-left:0rpx";
       var shoppingList = this.data.shoppingList;
       if (index !== "" && index != null) {
         shoppingList[parseInt(index)].left = left;
@@ -150,6 +154,13 @@ Page({
 
       }
     }
+  },
+  deleteItem: function (event) {
+    const { index } = event.target.dataset;
+    let { shoppingList } = this.data;
+    shoppingList.splice( index, 1);
+    console.log(shoppingList);
+    this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), shoppingList);
   },
    /* 生命周期函数--监听页面初次渲染完成
    */
