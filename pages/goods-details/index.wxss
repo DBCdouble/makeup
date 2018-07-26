@@ -170,6 +170,7 @@ swiper-item{
   overflow:hidden;
   margin:-75rpx 40rpx 0 0;
   border:1px solid #F5F5F5;
+  background-color: #FFFFFF;
 }
 .popup-goodsinfo-box .img-box .img{
   width: 150rpx;

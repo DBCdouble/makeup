@@ -1,9 +1,9 @@
 <view class="my-container">
   <!-- 模块分割线 -->
   <view class="my-info">
-    <view class="avatar-box"><image class="avatar" src="{{userInfo.avatarUrl}}"></image></view>
+    <view class="avatar-box"><image class="avatar" src="{{userInfo.user.image}}"></image></view>
     <view class="nickname-box">
-      <view class="nickname">{{userInfo.nickName}}</view>
+      <view class="nickname">{{userInfo.user.nickname}}</view>
       <view class="usertype">普通用户</view>
     </view>
     <view class="address-box"></view>
