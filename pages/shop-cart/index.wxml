@@ -1,10 +1,7 @@
 <import src="./shopping-item/index.wxml"/>
 <view class="cart-container">
   <view class="title-box">购物车</view>
-  <block wx:if="{{shoppingList.length>0}}">
-    <view class="edit-box" hidden="{{!saveHidden}}"><text class="text" bindtap="edit">编辑</text></view>
-    <view class="edit-box" hidden="{{saveHidden}}"><text class="text">完成</text></view>
-  </block>
+    <view class="edit-box" bindtap=""><text class="text" bindtap="edit">{{saveHidden ? '编辑':'完成'}}</text></view>
   <block wx:if="{{shoppingList.length>0}}">
     <view class="shoplist">
       <block wx:for="{{shoppingList}}" wx:for-item="item" wx:key="index">
@@ -15,16 +12,17 @@
   <block wx:else>
     <view></view>
   </block>
+  <alert innerText="{{alertText}}" show="{{alertShow}}"></alert>
   <view class="accounts-box">
-    <view class="all-check">
-      <view class="check-box"><image class="check" src="/images/shop-cart/gougou.png"></image></view>
+    <view class="all-check" bindtap="allSelectChange">
+      <view class="check-box"><image class="check" src="/images/shop-cart/{{allSelect?'gougou_sel.png':'gougou.png'}}"></image></view>
       <view class="check-text">全選</view>
     </view>
     <view class="total">
       <view class="total-text">合計:</view>
       <view class="total-price">￥{{totalPrice}}</view>
     </view>
-    <view class="account-btn" hidden="{{!saveHidden}}">去結算</view>
-    <view class="account-btn" hidden="{{saveHidden}}">删除</view>
+    <view class="account-btn" hidden="{{!saveHidden}}" bindtap="acounts">去結算</view>
+    <view class="account-btn" hidden="{{saveHidden}}" bindtap="deleteAll">删除</view>
   </view>
 </view>

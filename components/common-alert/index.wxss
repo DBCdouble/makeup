@@ -1,0 +1,31 @@
+.wrapper{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  top: 0;
+  left:0;
+  margin: auto;
+}
+.inner{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100rpx;
+  font-size: 30rpx;
+  color:#FFFFFF;
+  text-align: center;
+  line-height: 100rpx;
+  background-color: rgba(6, 6, 6, 0.7);
+  margin: auto 200rpx;
+  border-radius: 10rpx;
+  z-index: 101;
+}
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}

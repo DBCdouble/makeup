@@ -1,0 +1,5 @@
+<view class="wrapper {{ show ? 'show' : 'hide'}}">
+  <view class="inner">
+    <view>{{innerText}}</view>
+  </view>
+</view>

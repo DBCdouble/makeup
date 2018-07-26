@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "購物車",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "alert":"../../components/common-alert/index"
+  }
 }

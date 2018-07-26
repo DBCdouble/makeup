@@ -15,9 +15,9 @@ Page({
     wx.switchTab({
       url: "../posts/post"
     });
-    // utils.http(app.globalData.baseUrl + '/login?phoneNum=18566184235&password=' + md5.hex_md5(123456789).toUpperCase()+'&appTab=2&appkey='+app.globalData.appkey,'POST',(data)=>{
-    //   console.log(data);
-    // });
+    utils.http(app.globalData.baseUrl + '/login?phoneNum=18566184235&password=25F9E794323B453885F5181F1B624D0B&appTab=2&appkey='+app.globalData.appkey,'POST',(data)=>{
+      console.log(data);
+    });
     wx.setStorageSync('userInfo', e.detail.userInfo);
   }
 })

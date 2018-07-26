@@ -1,9 +1,7 @@
 @import "./shopping-item/index.wxss";
-page{
-  background-color: #F5F5F5;
-}
 .cart-container{
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
+  margin-top:130rpx;
 }
 .title-box{
    position: fixed;
@@ -26,12 +24,12 @@ page{
 .edit-box{
   text-align: right;
   color: #999;
-  padding-top:130rpx; 
+  background-color:#F5F5F5;
 }
 .edit-box .text{
   font-size: 30rpx;
-  height: 65rpx;
-  line-height: 65rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   margin-right: 24rpx;
 }
 .shoplist{
@@ -64,8 +62,8 @@ page{
   overflow: hidden;
 }
 .all-check .check-box .check{
-  width: 40rpx;
-  height: 40rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
 .all-check .check-text{
   margin-left: 20rpx;
