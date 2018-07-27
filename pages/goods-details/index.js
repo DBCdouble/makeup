@@ -6,22 +6,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hidePopup:true,
-    quantity:1
+    hidePopup:true, //控制底部弹出层的显示隐藏
+    quantity:1, //商品数量
+    goodsNum:"", //购物车数量
+    collectFlag:false //判断该商品是否收藏
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var id = options.id;
-    this.getDetails(id);
+    var goodsInfoId = options.id;
+    this.setData({
+      goodsInfoId
+    });
+    this.getDetails(goodsInfoId);
+    this.getGoodsNum();
+    this.getGoodsCollect();
   },
   getDetails: function (id) {
     wx.showLoading({
       title: '加载中',
     })
-    util.http( app.globalData.baseUrl + '/goodinfo/appdetail?appkey=' + app.globalData.appkey + '&id=' + id, 'GET',(data) =>{
+    util.http( app.globalData.baseUrl + '/goodinfo/appdetail?appTab=2&appkey=' + app.globalData.appkey + '&id=' + id, 'GET',(data) =>{
       this.setData({
         goodinfo: data.goodinfo,
         goodStyles: data.goodStyles
@@ -30,6 +37,31 @@ Page({
     });
       
     
+  },
+  getGoodsNum: function () {
+    const { id } = wx.getStorageSync("userInfo").user; 
+    util.http(app.globalData.baseUrl + '/v1.4/user/shopping?appTab=2&appkey=' + app.globalData.appkey + '&userId=' + id+"&type=b2c", 'GET', (data) => {
+      if( data.result === 0) {
+        this.setData({
+          goodsNum: data.data.total
+        });
+        wx.setTabBarBadge({
+          index: 2,
+          text: String(data.data.total),
+        })
+      }
+    });
+  },
+  getGoodsCollect: function () {
+    const { id } = wx.getStorageSync("userInfo").user; 
+    const { goodsInfoId } = this.data;
+    util.http(app.globalData.baseUrl + '/goodcollect/item?appTab=2&appkey=' + app.globalData.appkey + '&userId=' + id + "&goodinfoId=" + goodsInfoId, 'GET', (data) => {
+      if( data.result === 0 ) {
+        this.setData({
+          collectFlag: data.flag
+        });
+      }
+    });
   },
   goback: function () {
     wx.navigateBack({
@@ -103,6 +135,44 @@ Page({
         hidePopup: true
       })
     }.bind(this), 200)
+  },
+  //跳转到购物车
+  goShopcart: function () {
+    wx.switchTab({
+      url: '/pages/shop-cart/index',
+    })
+  },
+  //点击收藏按钮
+  collect: function () {
+    let { collectFlag } = this.data;
+    const action = collectFlag ? 'cancel' : 'add';
+    const method = collectFlag ? 'POST' : 'PUT'; 
+    const { id } = wx.getStorageSync("userInfo").user;
+    const { goodsInfoId } = this.data;
+    util.http(app.globalData.baseUrl + `/goodcollect/${action}?appTab=2&appkey=` + app.globalData.appkey + "&userId=" + id + "&goodinfoId=" + goodsInfoId, method, (data) => {
+      if (data.result === 0) {
+        this.setData({
+          collectFlag: data.flag
+        });
+      }
+    });
+  },
+  // 加入购物车
+  joinShopcart: function () {
+    const { token , user : { id } } = wx.getStorageSync("userInfo");
+    const { quantity } = this.data;
+    const goodsInfoId  = this.data.goodinfo.id;
+    util.http(app.globalData.baseUrl + `/user/shopping?appTab=2&appkey=` + app.globalData.appkey + "&userId=" + id + "&goodsId=" + goodsInfoId + "&token=" + token + "&quantity=" + quantity + "&shipWay=3&appTab=2", 'PUT', (data) => {
+      if (data.result === 0) {
+        this.setData({
+          goodsNum:data.total
+        });
+        wx.setTabBarBadge({
+          index: 2,
+          text: String(data.total),
+        })
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

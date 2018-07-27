@@ -23,8 +23,12 @@ Page({
     this.getShoppingList();
   },
   getShoppingList: function () {
-    console.time("获取购物车列表时间");
-    utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=7589", "GET", (data)=>{
+    const { id } = wx.getStorageSync("userInfo").user;
+    utils.http(app.globalData.baseUrl + '/v1.4/user/shopping?appTab=2&appkey=' + app.globalData.appkey + "&userId="+id+"&type=b2c", "GET", (data)=>{
+      wx.setTabBarBadge({
+        index: 2,
+        text: String(data.data.total),
+      })
       data.data.shoppingList.map(item =>{
         item.select = false;
       });
@@ -252,14 +256,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+    const { shoppingList } = this.data;
+    shoppingList.map(item => {
+      item.select = false;
+    });
+    this.setGoodsList(true, "0.00", false, true, shoppingList);
   },
 
   /**

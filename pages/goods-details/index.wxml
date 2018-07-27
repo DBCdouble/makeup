@@ -46,14 +46,15 @@
     </view>    
   </view> 
    <view class="footer-box">
-    <view class="collect">
-      <image class="footer-icon" src="/images/goods-details/collect.png"></image>
+    <view class="collect" bindtap="collect">
+      <image class="footer-icon" src="/images/goods-details/{{collectFlag ? 'collect_sel.png' : 'collect.png'}}"></image>
       <view>收藏</view>
     </view>
-    <view class="go-shop-cart">
+    <view class="go-shop-cart" bindtap="goShopcart">
       <image class="footer-icon" src="/images/tab/gouwuche.png"></image>
+      <view class="goodsNum">{{goodsNum}}</view>
       <view>購物車</view> 
     </view>
-    <view class="join-shop-cart">加入購物車</view>
+    <view class="join-shop-cart" bindtap="joinShopcart">加入購物車</view>
   </view> 
 </view>

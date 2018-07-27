@@ -279,7 +279,19 @@ swiper-item{
   margin-top:10rpx;
 
 }
+.goodsNum{
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  background-color: #E31436;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 22rpx;
+  top:0;
+  left:50%;
+}
 .go-shop-cart{
+  position: relative;
   flex:1;
   height: 49px;
 }
