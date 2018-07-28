@@ -24,7 +24,7 @@ Page({
   },
   getShoppingList: function () {
     const { id } = wx.getStorageSync("userInfo").user;
-    utils.http(app.globalData.baseUrl + '/v1.4/user/shopping?appTab=2&appkey=' + app.globalData.appkey + "&userId="+id+"&type=b2c", "GET", (data)=>{
+    utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId="+id, "GET", (data)=>{
       wx.setTabBarBadge({
         index: 2,
         text: String(data.data.total),
@@ -47,6 +47,16 @@ Page({
     });
     this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), shoppingList);
   },
+  // 输入框失焦时间
+  // quantityBlur: function () {
+  //   utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=" + userId + "&quantity=" + shoppingList[index].quantity + "&id=" + id + "&token=" + token, "POST", (data) => {
+  //     wx.setTabBarBadge({
+  //       index: 2,
+  //       text: String(data.data.total),
+  //     })
+  //     this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), shoppingList);
+  //   });
+  // },
   // 完成或者编辑
   edit: function () {
     let { saveHidden } = this.data;
@@ -69,6 +79,7 @@ Page({
     })
     this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), shoppingList);
   },
+  //结算
   acounts: function () {
     let time;
     clearTimeout(time);
@@ -87,6 +98,7 @@ Page({
       },1000);
     }
   },
+  //多选删除
   deleteAll: function () {
     let time;
     clearTimeout(time);
@@ -121,13 +133,21 @@ Page({
     const { opt } = event.target.dataset;
     const { index } = event.target.dataset;
     let { shoppingList } = this.data;
-    let { quantity } = shoppingList[index];
+    let { quantity , id } = shoppingList[index];
+    const { token } = wx.getStorageSync("userInfo");
+    const userId = wx.getStorageSync("userInfo").user.id;
     if (opt === "minus" && shoppingList[index].quantity > 1) {
       shoppingList[index].quantity = Number(quantity) - 1;
     } else if( opt === "plus" ) {
       shoppingList[index].quantity = Number(quantity) + 1;
     }
+    utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=" + userId + "&quantity=" + shoppingList[index].quantity + "&id=" + id + "&token=" + token, "POST", (data) => {
+      wx.setTabBarBadge({
+        index: 2,
+        text: String(data.data.total),
+      })
     this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), shoppingList);
+    });
   },
   // 获取编辑删除状态
   getSaveHidden: function () {
@@ -256,6 +276,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getShoppingList();
   },
 
   /**

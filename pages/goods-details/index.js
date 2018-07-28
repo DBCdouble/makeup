@@ -40,14 +40,10 @@ Page({
   },
   getGoodsNum: function () {
     const { id } = wx.getStorageSync("userInfo").user; 
-    util.http(app.globalData.baseUrl + '/v1.4/user/shopping?appTab=2&appkey=' + app.globalData.appkey + '&userId=' + id+"&type=b2c", 'GET', (data) => {
+    util.http(app.globalData.baseUrl + '/user/shopping/total?appTab=2&appkey=' + app.globalData.appkey + '&userId=' + id, 'GET', (data) => {
       if( data.result === 0) {
         this.setData({
-          goodsNum: data.data.total
-        });
-        wx.setTabBarBadge({
-          index: 2,
-          text: String(data.data.total),
+          goodsNum: data.total
         })
       }
     });
@@ -162,14 +158,15 @@ Page({
     const { token , user : { id } } = wx.getStorageSync("userInfo");
     const { quantity } = this.data;
     const goodsInfoId  = this.data.goodinfo.id;
-    util.http(app.globalData.baseUrl + `/user/shopping?appTab=2&appkey=` + app.globalData.appkey + "&userId=" + id + "&goodsId=" + goodsInfoId + "&token=" + token + "&quantity=" + quantity + "&shipWay=3&appTab=2", 'PUT', (data) => {
+    util.http(app.globalData.baseUrl + `/v1.0/b2c/user/shopping?appTab=2&appkey=` + app.globalData.appkey + "&userId=" + id + "&goodsId=" + goodsInfoId + "&token=" + token + "&quantity=" + quantity + "&shipWay=3&appTab=2", 'PUT', (data) => {
       if (data.result === 0) {
         this.setData({
           goodsNum:data.total
         });
-        wx.setTabBarBadge({
-          index: 2,
-          text: String(data.total),
+      } else if ( data.result === 400) {
+        wx.removeStorageSync("userInfo");
+        wx.navigateTo({
+          url: '/pages/welcome/welcome',
         })
       }
     });

@@ -36,10 +36,10 @@ Page({
   },
   getGoodsNum: function () {
     const { id } = wx.getStorageSync("userInfo").user;
-    util.http(app.globalData.baseUrl + '/v1.4/user/shopping?appTab=2&appkey=' + app.globalData.appkey + '&userId=' + id+"&type=b2c", 'GET', (data) => {
+    util.http(app.globalData.baseUrl + '/user/shopping/total?appTab=2&appkey=' + app.globalData.appkey + '&userId=' + id, 'GET', (data) => {
       wx.setTabBarBadge({
         index: 2,
-        text: String(data.data.total),
+        text: String(data.total),
       })
     });
   },
@@ -53,6 +53,9 @@ Page({
     wx.navigateTo({
       url: "post-detail/post-detail?id=" + postId
     })
+  },
+  onShow: function () {
+    this.getGoodsNum();
   },
   onReachBottom: function () {
     const { topList } = this.data;
