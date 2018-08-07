@@ -103,18 +103,28 @@ Page({
     let time;
     clearTimeout(time);
     const { noSelect } = this.data;
-    if (!noSelect) {
-      let { shoppingList } = this.data;
-      let list = [];
-      for (let i = 0; i < shoppingList.length; i++) {
-        if (!shoppingList[i].select) {
-          list.push(shoppingList[i]);
-        }
+    let { shoppingList } = this.data;
+    const { token , user: {id} } = wx.getStorageSync("userInfo");
+    let ids = [];
+    shoppingList.map(item=>{
+      if (item.select) {
+        ids.push(item.id);
       }
-      this.setData({
-        shoppingList:list
-      },()=>{
-        this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), list);
+    });
+    if (!noSelect) {
+      utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=" + id + "&token="+token+"&ids=" + ids, "DELETE", (data) => {
+        wx.setTabBarBadge({
+          index: 2,
+          text: String(data.data.total),
+        });
+        data.data.shoppingList.map(item=>{
+          item.select = false;
+        });
+        this.setData({
+          shoppingList: data.data.shoppingList
+        }, () => {
+          this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), this.data.shoppingList);
+        });
       });
     } else {
       this.setData({
@@ -254,10 +264,24 @@ Page({
     }
   },
   deleteItem: function (event) {
-    const { index } = event.target.dataset;
+    let ids  = [];
+    ids.push(event.target.dataset.id);
+    const { token , user: {id} } = wx.getStorageSync("userInfo");
     let { shoppingList } = this.data;
-    shoppingList.splice( index, 1);
-    this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), shoppingList);
+    utils.http(app.globalData.baseUrl + '/v1.0/b2c/user/shopping?appkey=' + app.globalData.appkey + "&userId=" + id + "&token=" + token + "&ids=" + ids, "DELETE", (data) => {
+      wx.setTabBarBadge({
+        index: 2,
+        text: String(data.data.total),
+      });
+      data.data.shoppingList.map(item => {
+        item.select = false;
+      });
+      this.setData({
+        shoppingList: data.data.shoppingList
+      }, () => {
+        this.setGoodsList(this.getSaveHidden(), this.getTotalPrice(), this.getAllSelect(), this.getNoSelect(), this.data.shoppingList);
+      });
+    });
   },
   //点击商品图片进入商品详情
   toDetail: function (event) {

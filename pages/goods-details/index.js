@@ -91,11 +91,7 @@ Page({
   },
   ciqGmodelTap: function (event) {
     let { id, ciqgmodel } = event.target.dataset;
-    let { goodinfo } = this.data;
-    goodinfo.ciqGmodel = ciqgmodel;
-    this.setData({
-      goodinfo
-    });
+    this.getDetails(id);
   },
   quantityChange: function (value) {
     this.setData({
